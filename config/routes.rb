@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   patch 'pictures/:id' => "pictures#update"
 
   get 'pictures/:id' => 'pictures#show'
+
+  delete 'pictures/:id' => 'pictures#destroy'
 end
