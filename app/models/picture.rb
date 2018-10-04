@@ -17,6 +17,6 @@ class Picture < ApplicationRecord
   end
 
   def self.pictures_created_in_year(year)
-    where(created_at: Date.new(year,1,1)..Date.new(year,-1,-1))
+    Picture.where(created_at: Date.new(year,1,1)..Date.new(year,-1,-1))
   end
 end
