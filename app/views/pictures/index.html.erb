@@ -1,7 +1,21 @@
-<h1>You know it!</h1>
+<h1>Welcome to Photgur!</h1>
 <%= link_to("New Picture", "/pictures/new") %>
 
-<% @pictures.each do |picture| %>
+<% @most_recent_pictures.each do |picture| %>
   <p><%= picture.title %>, <%= picture.artist %></p>
-  <a href="/pictures/<%= picture.id %>"> <img src="<%= picture.url %>" alt="<%= picture.title %>"> </a>
+  <a href="/pictures/<%= picture.id %>"> <img src="<%= picture.url %>" alt="<%= picture.title %>"></a>
+<% end %>
+
+<% @month_old.each do |picture| %>
+  <p><%= picture.title %>, <%= picture.artist %></p>
+  <a href="/pictures/<%= picture.id %>"> <img src="<%= picture.url %>" alt="<%= picture.title %>"></a>
+<% end %>
+
+<br />
+
+<%= @month_old.length %>
+
+<% @pictures_2018.each do |picture| %>
+  <p><%= picture.title %>, <%= picture.artist %></p>
+  <a href="/pictures/<%= picture.id %>"> <img src="<%= picture.url %>" alt="<%= picture.title %>"></a>
 <% end %>
