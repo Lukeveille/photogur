@@ -1,15 +1,15 @@
 <h1>NEW USER</h1>
 
-<%= form_for(@users) do |f| %>
-  <p>
+<%= form_for(@user) do |f| %>
+  <div class="field">
     <%= f.label :email %>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :password_digest %>
-    <%= f.text_field :password_digest %>
-  </p>
-  <p>
+    <%= f.email_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
     <%= f.submit %>
-  </p>
+  </div>
 <% end %>
