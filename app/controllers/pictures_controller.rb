@@ -28,7 +28,7 @@ class PicturesController < ApplicationController
       redirect_to "/pictures"
     else
       # otherwise render new.html.erb
-      render :new
+      render new_picture_path
     end
   end
 
