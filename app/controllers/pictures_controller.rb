@@ -1,4 +1,10 @@
 class PicturesController < ApplicationController
+
+  before_action :ensure_logged_in, except: [:show, :index]
+  before_action :new_picture, only: [:new, :create]
+  before_action :select_picture, except: [:index, :new, :create]
+  before_action :write_picture, only: [:create, :update]
+  
   def index
     @pictures = Picture.all
 
@@ -8,24 +14,17 @@ class PicturesController < ApplicationController
   end
 
   def show
-    @picture = Picture.find(params[:id])
+  
   end
 
   def new
-    @picture = Picture.new
+
   end
 
   def create
-    @picture = Picture.new
-
-    @picture.title = params[:picture][:title]
-    @picture.artist = params[:picture][:artist]
-    @picture.url = params[:picture][:url]
-
-
     if @picture.save
       # if the picture gets saved, generate a get request to "/pictures" (the index)
-      redirect_to "/pictures"
+      redirect_to :root
     else
       # otherwise render new.html.erb
       render new_picture_path
@@ -33,28 +32,35 @@ class PicturesController < ApplicationController
   end
 
   def edit
-    @picture = Picture.find(params[:id])
-    p @picture
+
   end
 
   def update
-    @picture = Picture.find(params[:id])
-
-    @picture.title = params[:picture][:title]
-    @picture.artist = params[:picture][:artist]
-    @picture.url = params[:picture][:url]
-
-
     if @picture.save
-      redirect_to "/pictures/#{@picture.id}"
+      redirect_to picture_path(@picture)
     else
       render :edit
     end
   end
 
   def destroy
-    @picture = Picture.find(params[:id])
     @picture.destroy
-    redirect_to "/pictures"
+    redirect_to :root
+  end
+
+  private
+
+  def new_picture
+    @picture = Picture.new
+  end
+
+  def select_picture
+    @picture = Picture.find(params[:id])
+  end
+
+  def write_picture
+    @picture.title = params[:picture][:title]
+    @picture.artist = params[:picture][:artist]
+    @picture.url = params[:picture][:url]
   end
 end

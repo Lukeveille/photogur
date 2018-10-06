@@ -1,12 +1,13 @@
 class SessionsController < ApplicationController
   def new
+    flash[:previous_page] = request.referer
   end
 
   def create
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to pictures_url, notice: "Logged in!"
+      redirect_to flash[:previous_page], notice: "Logged in!"
     else
       render :new
     end

@@ -5,6 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Picture.destroy_all
+
 Picture.create(
   title:  'The old church on the coast of White sea',
   artist: 'Sergey Ershov',
