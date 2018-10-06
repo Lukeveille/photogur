@@ -7,7 +7,11 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to flash[:previous_page], notice: "Logged in!"
+      if flash[:previous_page]
+        redirect_to flash[:previous_page], notice: "Logged in!"
+      else
+        redirect_to :root
+      end
     else
       render :new
     end

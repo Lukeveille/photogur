@@ -1,5 +1,7 @@
 <h1>Welcome to Photogur!</h1>
-<%= link_to("New Picture", new_picture_path) %>
+<% if current_user %>
+  <%= link_to("New Picture", new_picture_path) %>
+<% end %>
 
 <br />
 

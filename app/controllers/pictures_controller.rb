@@ -1,8 +1,9 @@
 class PicturesController < ApplicationController
 
-  before_action :ensure_logged_in, except: [:show, :index]
   before_action :new_picture, only: [:new, :create]
-  before_action :select_picture, except: [:index, :new, :create]
+  before_action :load_picture, except: [:index, :new, :create]
+  before_action :ensure_logged_in, except: [:show, :index]
+  before_action :ensure_ownership, only: [:edit, :update, :destroy]
   before_action :write_picture, only: [:create, :update]
   
   def index
@@ -22,11 +23,11 @@ class PicturesController < ApplicationController
   end
 
   def create
+    @picture.user_id = current_user[:id]
+
     if @picture.save
-      # if the picture gets saved, generate a get request to "/pictures" (the index)
       redirect_to :root
     else
-      # otherwise render new.html.erb
       render new_picture_path
     end
   end
@@ -50,11 +51,29 @@ class PicturesController < ApplicationController
 
   private
 
+  def ensure_logged_in
+    unless current_user
+      flash[:alert] = "Please log in"
+      redirect_to new_session_url
+    end
+  end
+
+  def ensure_ownership
+    unless current_user == @picture.user
+      flash[:alert] = "Not authorized to do that!"
+      if request.referer
+        redirect_to request.referer
+      else
+        redirect_to :root
+      end
+    end
+  end
+
   def new_picture
     @picture = Picture.new
   end
 
-  def select_picture
+  def load_picture
     @picture = Picture.find(params[:id])
   end
 

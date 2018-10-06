@@ -1,7 +1,7 @@
-<h1><%= @picture.title %>, <%= @picture.artist %></h1>
+<h1><%= @picture.title %> | <%= @picture.artist %></h1>
 <%= link_to("Back to Pictures", "/pictures") %>
 
-<% if current_user %>
+<% if current_user && @picture.user_id == current_user.id %>
  | <%= link_to("Edit", "/pictures/#{@picture.id}/edit") %> | <%= link_to("Delete", "/pictures/#{@picture.id}", method: :delete, data: {confirm: "Are you sure you want to delete this picture?"})  %>
 <% end %>
 <br />
