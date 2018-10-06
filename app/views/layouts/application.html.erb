@@ -13,7 +13,8 @@
       Signed in as <%= current_user.email %>. <%= link_to "Log out", session_path("current"), :method => :delete %>
     <% else %>
       <%= link_to "Log in", new_session_path %> or <%= link_to "Sign up", new_user_path %>
-    <% end %>
+    <% end %> 
+    | <%= link_to "Home", :root %>
   </p>
 
   <%= yield %>
