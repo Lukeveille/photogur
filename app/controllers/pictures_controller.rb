@@ -17,7 +17,8 @@ class PicturesController < ApplicationController
   end
 
   def show
-  
+    @previous_picture = Picture.where('id < ?', @picture.id).last
+    @next_picture = Picture.where('id > ?', @picture.id).first
   end
 
   def new

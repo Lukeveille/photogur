@@ -13,6 +13,9 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+main {
+  position: relative;
+}
 
 .new_pic_btn {
   background-color: rgb(223, 165, 79);
@@ -27,7 +30,8 @@ header {
 }
 .login_btn,
 .signup_btn,
-.logout_btn {
+.logout_btn,
+.edit_delete_btn a {
   color: #FFF;
   text-decoration: none;
   font-size: .8em;
@@ -37,7 +41,8 @@ header {
 }
 .login_btn:hover,
 .signup_btn:hover,
-.logout_btn:hover {
+.logout_btn:hover,
+.edit_delete_btn a:hover {
   background-color: #333;
 }
 .login_signup span {
@@ -89,14 +94,13 @@ width: 300px;
 .picture_box,
 .picture_full {
   overflow: hidden;
-  position: relative;
   display: inline-block;
   border-radius: 5px;
   box-shadow: 1px 1px 3px #111;
   background-color: #444;
-  padding: 0;
-  margin: 0;
-  position: relative;
+}
+.picture_full {
+  top: -50px;
 }
 .picture_box h5,
 .picture_title {
@@ -121,7 +125,8 @@ form input {
   margin: 0.5em;
   padding: 0.5em;
 }
-form input[type="submit"]:hover {
+form input[type="submit"]:hover,
+.img_nav > a:hover {
   background-color:	rgb(61, 192, 177);
   cursor: pointer;
 }
@@ -139,5 +144,23 @@ form input[type="submit"]:hover {
   display: inline-block;
   background-color: #333;
   padding: 0.5em;
+  border-radius: 5px;
+}
+
+.edit_delete_btn {
+  display: flex;
+  justify-content: center;
+}
+.img_nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.2em;
+}
+.img_nav > a {
+  background-color:	rgb(51, 182, 167);
+  color: #FFF;
+  text-decoration: none;
+  padding: .5em;
   border-radius: 5px;
 }
