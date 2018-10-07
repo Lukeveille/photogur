@@ -1,15 +1,12 @@
-<h1>New User</h1>
+<p>- new user -</p>
+
+<br />
 
 <%= form_for(@user) do |f| %>
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.submit %>
-  </div>
+
+  <%= render "shared/user_form", f: f %>
+
+  <%= link_to "sign in", new_session_path, class: "signup_btn" %>
+  <%= f.submit "Sign Up" %>
+  
 <% end %>

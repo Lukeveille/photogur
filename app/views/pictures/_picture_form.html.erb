@@ -1,15 +1,15 @@
 <%= form_for(picture) do |f| %>
   <p>
-    <%= f.label :artist %><br>
-    <%= f.text_field :artist %>
+    <% f.label :artist %>
+    <%= f.text_field :artist, placeholder: "Artist" %>
   </p>
   <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <% f.label :title %>
+    <%= f.text_field :title, placeholder: "Title" %>
   </p>
   <p>
-    <%= f.label :url %><br>
-    <%= f.text_field :url %>
+    <% f.label :url %>
+    <%= f.text_field :url, placeholder: "URL" %>
   </p>
   <p>
     <%= f.submit "Save" %>

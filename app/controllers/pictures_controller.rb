@@ -5,6 +5,8 @@ class PicturesController < ApplicationController
   before_action :ensure_logged_in, except: [:show, :index]
   before_action :ensure_ownership, only: [:edit, :update, :destroy]
   before_action :write_picture, only: [:create, :update]
+
+  layout 'home'
   
   def index
     @pictures = Picture.all
