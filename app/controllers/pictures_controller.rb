@@ -11,14 +11,15 @@ class PicturesController < ApplicationController
   def index
     @pictures = Picture.all
 
+    @newest_first = Picture.newest_first
     @most_recent_pictures = Picture.created_after(1.month.ago)
     @month_old = Picture.created_before(1.month.ago)
     @pictures_2018 = Picture.pictures_created_in_year(2018)
   end
 
   def show
-    @previous_picture = Picture.where('id < ?', @picture.id).last
-    @next_picture = Picture.where('id > ?', @picture.id).first
+    @previous_picture = Picture.where('id > ?', @picture.id).first
+    @next_picture = Picture.where('id < ?', @picture.id).last
   end
 
   def new

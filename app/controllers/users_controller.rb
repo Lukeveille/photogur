@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
+    flash[:previous_page] = request.referer
   end
 
   def create
@@ -12,9 +13,13 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url
+      if flash[:previous_page] && flash[:previous_page] != new_session_url
+        redirect_to flash[:previous_page]
+      else
+        redirect_to root_path
+      end
     else
-      render :new
+      render new_user_path
     end
 
   end

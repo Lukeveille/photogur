@@ -2,10 +2,12 @@
 
 <div class="picture_index">
 
-  <% @most_recent_pictures.each do |picture| %>
+  <% @newest_first.each do |picture| %>
     <div class="picture_box">
-      <%= link_to image_tag(picture.url, border: 0), picture_path(picture) %>
-      <h5><%= picture.title %></h5>
+      <div class="img_wrap">
+        <%= link_to image_tag(picture.url, border: 0), picture_path(picture) %>
+        <h5><%= picture.title %></h5>
+      </div>
     </div>
   <% end %>
 
