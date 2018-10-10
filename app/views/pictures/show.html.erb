@@ -8,6 +8,8 @@
 
   <% if @next_picture %>
     <%= link_to "Next Post >", picture_path(@next_picture) %>
+  <% else %>
+    <%= link_to "<< First Post", picture_path(@last_picture) %>
   <% end %>
 
 </div>

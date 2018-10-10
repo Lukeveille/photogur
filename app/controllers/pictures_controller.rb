@@ -20,6 +20,8 @@ class PicturesController < ApplicationController
   def show
     @previous_picture = Picture.where('id > ?', @picture.id).first
     @next_picture = Picture.where('id < ?', @picture.id).last
+    @last_picture = Picture.last
+    @first_picture = Picture.first
   end
 
   def new
